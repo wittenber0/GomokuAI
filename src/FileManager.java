@@ -17,7 +17,7 @@ public class FileManager {
 
         try {
             PrintWriter writer = new PrintWriter(moveFile);
-            writer.print("Next");
+            writer.print(m.toString());
             writer.close();
         }catch(Exception e){
             System.out.println(e);
@@ -37,5 +37,5 @@ public class FileManager {
         }
         return null;
     }
-    
+
 }
