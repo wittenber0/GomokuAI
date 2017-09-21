@@ -4,5 +4,5 @@
 public class GameBoard {
     public enum TileType {black, white, empty}
 
-    public TileType[][] board;
+    public TileType[][] board = new TileType[15][15];
 }
