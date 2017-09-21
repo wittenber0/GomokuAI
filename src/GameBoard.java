@@ -12,12 +12,13 @@ public class GameBoard {
             }
         }
     }
+    
+    public GameBoard(GameBoard previous, int i, int j, TileType type) {
+        board = previous.getBoard();
+        board[i][j] = type;
+    }
 
     public TileType[][] getBoard() {
         return this.board;
-    }
-
-    public void setBoard(int i, int j, TileType type) {
-        this.board[i][j] = type;
     }
 }
