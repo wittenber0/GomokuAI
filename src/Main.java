@@ -12,15 +12,5 @@ public class Main {
 
     }
 
-    public void writeMove(Move m){
 
-        try {
-            Scanner scanner = new Scanner(new File("move_file_test"), " ");
-
-
-        }catch(Exception e){
-            System.out.println(e);
-        }
-
-    }
 }
