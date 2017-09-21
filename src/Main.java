@@ -8,6 +8,8 @@ public class Main {
 
     public static void main(String[] args){
 
+        FileManager f = new FileManager("move_file_test");
+        f.writeMove(new Move(3, 5));
 
 
     }
