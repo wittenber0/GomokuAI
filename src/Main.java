@@ -7,26 +7,34 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args){
-
-        
+        GameBoard.TileType myColor;
+        GameBoard.TileType oponentColor;
 
         GameBoard board = new GameBoard();
         FileManager f = new FileManager("move_file_test", "test.go");
 
-
-        //f.writeMove(new Move(3, 5));
-
-
-        while(!f.checkForGo()){
-
+        if(f.readMove() == null){
+            myColor = GameBoard.TileType.WHITE;
+            oponentColor = GameBoard.TileType.BLACK;
+        }else{
+            myColor = GameBoard.TileType.BLACK;
+            oponentColor = GameBoard.TileType.WHITE;
         }
+        boolean termination = false;
+        while(termination == false) {
 
-        Move lastMove = f.readMove();
-        board.saveMove(lastMove, GameBoard.TileType.BLACK);
-        Move myMove = board.getBestMove();
-        board.saveMove(myMove, GameBoard.TileType.WHITE);
-        f.writeMove(myMove);
-        System.out.println("Found Go File");
+            while (!f.checkForGo()) {}
+            System.out.println("Found Go File");
+
+            Move lastMove = f.readMove();
+            board.saveMove(lastMove, oponentColor);
+            Move myMove = board.getBestMove();
+            termination = board.saveMove(myMove, myColor);
+
+            if(termination == false) {
+                f.writeMove(myMove);
+            }
+        }
 
 
     }

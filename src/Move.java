@@ -16,7 +16,8 @@ public class Move {
     }
 
     public String toString(){
-        String s = "TeamName " + getColumnChar(column) + " " + row;
+        int outRow = row+1;
+        String s = "TeamName " + getColumnChar(column) + " " + outRow;
         return s;
     }
 

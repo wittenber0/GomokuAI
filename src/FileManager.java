@@ -21,6 +21,7 @@ public class FileManager {
             PrintWriter writer = new PrintWriter(moveFile);
             writer.print(m.toString());
             writer.close();
+            System.out.println(m.toString());
         }catch(Exception e){
             System.out.println(e);
         }

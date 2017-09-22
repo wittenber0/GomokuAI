@@ -24,9 +24,11 @@ public class GameBoard {
     }
 
     public boolean saveMove(Move m, TileType color){
-        if (board[m.column][m.row] == TileType.EMPTY){
-            board[m.column][m.row] = color;
-            return true;
+        if(m != null) {
+            if (board[m.column][m.row] == TileType.EMPTY) {
+                board[m.column][m.row] = color;
+                return true;
+            }
         }
         return false;
     }
@@ -35,7 +37,7 @@ public class GameBoard {
 
         for (int i=0; i< board.length; i++){
             for(int j=0; j<board[i].length; j++){
-                if(board[i][i] == TileType.EMPTY){
+                if(board[i][j] == TileType.EMPTY){
                     return new Move(i, j);
                 }
             }
