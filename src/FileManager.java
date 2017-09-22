@@ -7,10 +7,12 @@ import java.util.Scanner;
  * Created by Ryan on 9/20/2017.
  */
 public class FileManager {
-    File moveFile;
+    private File goFile;
+    private File moveFile;
 
-    public FileManager(String moveFileName){
+    public FileManager(String moveFileName, String goFileName){
         moveFile = new File(moveFileName);
+        goFile = new File(goFileName);
     }
 
     public void writeMove(Move m){
@@ -36,6 +38,10 @@ public class FileManager {
             System.out.println(e);
         }
         return null;
+    }
+
+    public boolean checkForGo(){
+        return goFile.exists();
     }
 
 }
