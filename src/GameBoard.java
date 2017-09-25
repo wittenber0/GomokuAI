@@ -1,3 +1,5 @@
+import java.util.LinkedList;
+
 /**
  * Created by Luke on 20-Sep-17.
  */
@@ -186,5 +188,23 @@ public class GameBoard {
         }
 
         return count;
+    }
+
+    public LinkedList<Move> getPossibleMoves(){
+
+        LinkedList<Move> allMoves = new LinkedList<Move>();
+
+        for (int i=0; i< board.length; i++){
+            for(int j=0; j< board[0].length; j++){
+
+                if(board[i][j] == TileType.EMPTY){
+                    Move m = new Move(i, j);
+                    allMoves.add(m);
+                }
+            }
+        }
+
+        return allMoves;
+
     }
 }
