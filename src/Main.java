@@ -20,18 +20,23 @@ public class Main {
             myColor = GameBoard.TileType.BLACK;
             oponentColor = GameBoard.TileType.WHITE;
         }
-        boolean termination = false;
-        while(termination == false) {
+        boolean boardFull = false;
+        boolean win = false;
+        while(boardFull == false && win == false) {
+
+
 
             while (!f.checkForGo()) {}
             System.out.println("Found Go File");
 
             Move lastMove = f.readMove();
+            win = board.checkWin(lastMove, oponentColor);
+
             board.saveMove(lastMove, oponentColor);
             Move myMove = board.getBestMove();
-            termination = board.saveMove(myMove, myColor);
+            boardFull = board.saveMove(myMove, myColor);
 
-            if(termination == false) {
+            if(boardFull == false) {
                 f.writeMove(myMove);
             }
         }
