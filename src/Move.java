@@ -2,8 +2,8 @@
  * Created by Ryan on 9/20/2017.
  */
 public class Move {
-    int column;
-    int row;
+    private int column;
+    private int row;
 
     public Move(int x, int y){
         column = x;
@@ -78,5 +78,13 @@ public class Move {
                 return null;
 
         }
+    }
+
+    public int getRow(){
+        return this.row;
+    }
+
+    public int getColumn(){
+        return this.column;
     }
 }
