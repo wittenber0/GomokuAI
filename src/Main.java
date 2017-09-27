@@ -1,5 +1,4 @@
-import java.io.File;
-import java.util.Scanner;
+import java.util.LinkedList;
 
 /**
  * Created by Ryan on 9/20/2017.
@@ -9,8 +8,10 @@ public class Main {
     public static void main(String[] args){
         GameBoard.TileType myColor;
         GameBoard.TileType oponentColor;
+        LinkedList<Move> openMoves = new LinkedList<Move>();
 
         GameBoard board = new GameBoard();
+        board.setOpenMoves(openMoves);
         FileManager f = new FileManager("move_file_test", "test.go");
 
         if(f.readMove() == null){

@@ -1,12 +1,16 @@
 import java.util.LinkedList;
 
+import static java.lang.Math.abs;
+
 /**
  * Created by Luke on 20-Sep-17.
  */
 public class GameBoard {
-    public double heuritstic;
+    public int heuritstic;
     public enum TileType {BLACK, WHITE, EMPTY}
     public TileType[][] board = new TileType[15][15];
+    public LinkedList<Move> openMoves = new LinkedList<Move>();
+    public Move lastMove;
 
     public GameBoard() {
         for(int i=0; i<15; i++) {
@@ -19,6 +23,10 @@ public class GameBoard {
     public GameBoard(GameBoard previous, int i, int j, TileType type) {
         board = previous.getBoard();
         board[i][j] = type;
+    }
+
+    public void setOpenMoves (LinkedList<Move> openMoves) {
+        this.openMoves = openMoves;
     }
 
     public TileType[][] getBoard() {
@@ -36,16 +44,19 @@ public class GameBoard {
     }
 
     public Move getBestMove(){
-
-        for (int i=0; i< board.length; i++){
-            for(int j=0; j<board[i].length; j++){
-                if(board[i][j] == TileType.EMPTY){
-                    return new Move(i, j);
+        int max = 0, i = 0, j = 0;
+        for (int k=0; k< board.length; k++){
+            for(int l=0; l<board[k].length; l++) {
+                int temp = calculateHeuristic(k, l);
+                if (temp > max) {
+                    max = temp;
+                    i = k;
+                    j = l;
                 }
             }
         }
 
-        return null;
+        return new Move(i, j);
     }
 
     public boolean checkWin(Move m, TileType color){
@@ -197,7 +208,7 @@ public class GameBoard {
         for (int i=0; i< board.length; i++){
             for(int j=0; j< board[0].length; j++){
 
-                if(board[i][j] == TileType.EMPTY){
+                if(board[i][j] != TileType.EMPTY){
                     Move m = new Move(i, j);
                     allMoves.add(m);
                 }
@@ -206,5 +217,19 @@ public class GameBoard {
 
         return allMoves;
 
+    }
+
+    public LinkedList<Move> openMoves() {
+        //this.openMoves
+        return null;
+    }
+
+    public int calculateHeuristic(int i, int j) {
+        int heuristic = 0;
+        heuristic = 14- abs(8-i) - abs(8-j);
+
+
+
+        return heuristic;
     }
 }

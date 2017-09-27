@@ -8,6 +8,7 @@ public class BoardTreeManager {
     LinkedList<Move> possibleMoves = new LinkedList<Move>();
 
 
+
     public BoardTreeManager(GameBoard b){
         headBoard = b;
         possibleMoves = b.getPossibleMoves();

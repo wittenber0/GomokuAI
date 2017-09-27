@@ -22,57 +22,57 @@ public class Move {
     }
 
     public int getColumnNum(String s){
-        switch(s){
-            case "A" : return 0;
-            case "B" : return 1;
-            case "C" : return 2;
-            case "D" : return 3;
-            case "E" : return 4;
-            case "F" : return 5;
-            case "G" : return 6;
-            case "H" : return 7;
-            case "I" : return 8;
-            case "J" : return 9;
-            case "K" : return 10;
-            case "L" : return 11;
-            case "M" : return 12;
-            case "N" : return 13;
-            case "O" : return 14;
+        switch(s) {
+            case "A" : return 1;
+            case "B" : return 2;
+            case "C" : return 3;
+            case "D" : return 4;
+            case "E" : return 5;
+            case "F" : return 6;
+            case "G" : return 7;
+            case "H" : return 8;
+            case "I" : return 9;
+            case "J" : return 10;
+            case "K" : return 11;
+            case "L" : return 12;
+            case "M" : return 13;
+            case "N" : return 14;
+            case "O" : return 15;
             default: return -1;
         }
     }
 
     public String getColumnChar(int i) {
         switch (i) {
-            case 0:
-                return "A";
             case 1:
-                return "B";
+                return "A";
             case 2:
-                return "C";
+                return "B";
             case 3:
-                return "D";
+                return "C";
             case 4:
-                return "E";
+                return "D";
             case 5:
-                return "F";
+                return "E";
             case 6:
-                return "G";
+                return "F";
             case 7:
-                return "H";
+                return "G";
             case 8:
-                return "I";
+                return "H";
             case 9:
-                return "J";
+                return "I";
             case 10:
-                return "K";
+                return "J";
             case 11:
-                return "L";
+                return "K";
             case 12:
-                return "M";
+                return "L";
             case 13:
-                return "N";
+                return "M";
             case 14:
+                return "N";
+            case 15:
                 return "O";
             default:
                 return null;
