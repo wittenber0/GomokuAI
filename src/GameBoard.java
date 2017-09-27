@@ -6,11 +6,11 @@ import static java.lang.Math.abs;
  * Created by Luke on 20-Sep-17.
  */
 public class GameBoard {
-    public int heuritstic;
+    public int totalHeuritstic;
     public enum TileType {BLACK, WHITE, EMPTY}
     public TileType[][] board = new TileType[15][15];
     public LinkedList<Move> openMoves = new LinkedList<Move>();
-    public Move lastMove;
+    public Move lastEnemyMove;
 
     public GameBoard() {
         for(int i=0; i<15; i++) {
@@ -27,6 +27,10 @@ public class GameBoard {
 
     public void setOpenMoves (LinkedList<Move> openMoves) {
         this.openMoves = openMoves;
+    }
+
+    public void setLastEnemyMove(Move lastEnemyMove) {
+        this.lastEnemyMove = lastEnemyMove;
     }
 
     public TileType[][] getBoard() {
@@ -219,9 +223,19 @@ public class GameBoard {
 
     }
 
-    public LinkedList<Move> openMoves() {
-        //this.openMoves
-        return null;
+    public void getOpenMoves() {
+        if(this.openMoves.contains(lastEnemyMove)) {
+            this.openMoves.remove(lastEnemyMove);
+        }
+        int k = lastEnemyMove.getColumn();
+        int l = lastEnemyMove.getRow();
+
+        for(int i=-1; i<2; i++) {
+            for(int j=-1; j<2; j++) {
+                if((k < 15 && k > 1) && (l < 15 && l > 1) && !openMoves.contains(new Move(k+i,l+j)))
+                    openMoves.add(new Move(k+i,l+j));
+            }
+        }
     }
 
     public int calculateHeuristic(int i, int j) {

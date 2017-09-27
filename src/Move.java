@@ -4,6 +4,7 @@
 public class Move {
     private int column;
     private int row;
+    private GameBoard.TileType color;
 
     public Move(int x, int y){
         column = x;
@@ -86,5 +87,24 @@ public class Move {
 
     public int getColumn(){
         return this.column;
+    }
+
+    public void setColor(GameBoard.TileType color) {
+        this.color = color;
+    }
+
+    public GameBoard.TileType getColor(){
+        return this.color;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Move move = (Move) o;
+
+        if (this.column != move.column) return false;
+        return this.row == move.row;
     }
 }
