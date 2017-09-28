@@ -6,13 +6,13 @@ public class BoardTreeManager {
     private TreeNode rootNode;
 
     /**
-     * This function will calculate the minimax value of all of the moves on a given board
-     * @param board
-     * @param depth
-     * @param max
-     * @return
+     * This function will calculate the minimax value of all of the moves on a given board with alpha-beta pruning.
+     * @param board The game board to calculate the values for.
+     * @param depth The depth of recursion. Initially called with 0.
+     * @param max Whether this is a maximizing round or a minimizing round.
+     * @return The value of the move.
      */
-    public int minimax(GameBoard board, int depth, boolean max) {
+    public int minimax(GameBoard board, int depth, boolean max, int alpha, int beta) {
         if (board.getLongestChain().getLength() >= 5 || depth == MAX_DEPTH) {
             return board.totalHeuristic;
         }
@@ -24,7 +24,10 @@ public class BoardTreeManager {
 
             for (int i = 0; i < board.openMoves.size(); i++) {
                 Move move = board.openMoves.get(i);
-                bestValue =  returnMax(bestValue, minimax(new GameBoard(board, move), depth+1, false));
+                int value = minimax(new GameBoard(board, move), depth+1, false, alpha, beta);
+                bestValue =  returnMax(bestValue, value);
+                alpha = returnMax(alpha, bestValue);
+                if(beta <= alpha) {break;}
             }
             return bestValue;
 
@@ -33,16 +36,21 @@ public class BoardTreeManager {
 
             for (int i = 0; i < board.openMoves.size(); i++) {
                 Move move = board.openMoves.get(i);
-                bestValue =  returnMin(bestValue, minimax(new GameBoard(board, move), depth+1, true));
+                int value = minimax(new GameBoard(board, move), depth+1, true, alpha, beta);
+                bestValue =  returnMin(bestValue, value);
+                beta = returnMin(beta, bestValue);
+                if(beta <= alpha) {break;}
             }
             return bestValue;
         }
     }
 
+    // Returns the max of two numbers
     private Integer returnMax(int i, int j) {
         return i > j ? i : j;
     }
 
+    // Returns the min of two numbers
     private Integer returnMin(int i, int j) {
         return i < j ? i : j;
     }

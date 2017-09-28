@@ -1,7 +1,6 @@
 import java.util.HashMap;
 import java.util.LinkedList;
 
-import static java.lang.Math.PI;
 import static java.lang.Math.abs;
 
 public class GameBoard {
@@ -73,7 +72,7 @@ public class GameBoard {
         HashMap<Integer, Move> moves = new HashMap<>();
         int max = 0;
         for (Move move : openMoves) {
-            int key = manager.minimax(this, 0,true);
+            int key = manager.minimax(this, 0,true, Integer.MIN_VALUE, Integer.MAX_VALUE);
             moves.put(key, move);
             max = max > key ? max : key;
         }
@@ -124,6 +123,10 @@ public class GameBoard {
 	    return heuristic;
     }
 
+    /**
+     * This function will return the longest chain on the current game board.
+     * @return The longest chain.
+     */
     public Chain getLongestChain() {
         Chain bigchain = chains.get(1);
         for(Chain chain : chains) {
@@ -134,6 +137,13 @@ public class GameBoard {
         return bigchain;
     }
 
+    /**
+     * This function will respond to a given move by not only updating the current open or relevant moves, but also
+     * updating the chains. The way that we pre-prune the tree is by discounting values more than 1 away from any other
+     * piece. Through hours of play... I mean errrr study, we did not find a single instance of it being advantageous to
+     * move outside of this boundry.
+     * @param newMove The new move.
+     */
     public void respondToMove(Move newMove) {
 	    Move moveToAdd;
 	    TileType newTerminalType;
