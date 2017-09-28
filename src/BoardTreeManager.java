@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.List;
 
 /**
  * Created by Ryan on 9/25/2017.
@@ -14,38 +13,53 @@ public class BoardTreeManager {
         currentBoard = b;
     }
 
-    // http://www.codebytes.in/2014/08/minimax-algorithm-tic-tac-toe-ai-in.html
     public void callMinimax(int depth, int turn){
         minimax(depth, turn);
     }
 
     public int minimax(int depth, int turn) {
-        if (haveWeWon()) return +1;
-        if (haveTheyWon()) return -1;
+        if (currentBoard.getLongestChain().getLength() >= 5)
+            return currentBoard.getLongestChain().isOurChain() ? currentBoard.ourTotalHueristic : currentBoard.theirTotalHueristic;
 
-        if (openMoves.isEmpty()) return 0;
+        if (currentBoard.openMoves.isEmpty()) return 0;
 
-        List<Integer> scores = new ArrayList<>();
+        ArrayList<Integer> scores = new ArrayList<>();
 
-        for (int i = 0; i < openMoves.size(); ++i) {
-            Move move = openMoves.get(i);
+        for (int i = 0; i < currentBoard.openMoves.size(); ++i) {
+            Move move = currentBoard.openMoves.get(i);
 
-            if (turn == 1) { //X's turn select the highest from below minimax() call
-                getBestMove();
+            if (turn == 1) {
+                currentBoard.getBestMove();
                 int currentScore = minimax(depth + 1, 2);
                 scores.add(currentScore);
 
                 if (depth == 0)
-                    possibleMoves.add(new GameBoard(currentBoard, move.getColumn(), move.getRow(), currentBoard.ourColor));
+                    possibleMoves.add(new GameBoard(currentBoard, move));
 
-            } else if (turn == 2) {//O's turn select the lowest from below minimax() call
-                placeAMove(move, 2);
+            } else if (turn == 2) {
+                currentBoard.saveMove(move);
                 scores.add(minimax(depth + 1, 1));
             }
-            board[move.getRow()][move.getColumn()] = GameBoard.TileType.EMPTY; //Reset this move
+            currentBoard.board[move.getRow()][move.getColumn()] = GameBoard.TileType.EMPTY;
         }
         return turn == 1 ? returnMax(scores) : returnMin(scores);
     }
 
+    private Integer returnMax(ArrayList<Integer> scores) {
+        Integer max = 0;
+        for(Integer score : scores) {
+            max = score > max ? score : max;
+        }
 
+        return max;
+    }
+
+    private Integer returnMin(ArrayList<Integer> scores) {
+        Integer min = 0;
+        for(Integer score : scores) {
+            min = score < min ? score : min;
+        }
+
+        return min;
+    }
 }
