@@ -5,6 +5,13 @@ public class BoardTreeManager {
     boolean known;
     private TreeNode rootNode;
 
+    /**
+     * This function will calculate the minimax value of all of the moves on a given board
+     * @param board
+     * @param depth
+     * @param max
+     * @return
+     */
     public int minimax(GameBoard board, int depth, boolean max) {
         if (board.getLongestChain().getLength() >= 5 || depth == MAX_DEPTH) {
             return board.totalHeuristic;
