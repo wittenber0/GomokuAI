@@ -88,13 +88,11 @@ public class GameBoard {
      * try to move on behalf of the other player, we add the other player's likely heuristic value to ours --
      * --if our enemy wants to go there, so do we---- this play style allows our AI to play both offensively and
      * defensively.
-     * @param i The row.
-     * @param j The column.
+     * @param moveAtThisTile The move to be evaluated
      * @return The integer sum of the heuristic.
      */
-    public int calculateHeuristic(int i, int j) {
-    	int heuristic  = 14 - abs(8-i) - abs(8-j);
-    	Move moveAtThisTile = new Move(i, j, true);
+    public int calculateMoveHeuristic(Move moveAtThisTile) {
+    	int heuristic  = 14 - abs(8-moveAtThisTile.getRow()) - abs(8-moveAtThisTile.getColumn());
     	Chain chainIncludingThisMove;
 	    
         for (Chain chain: chains) {
@@ -107,6 +105,23 @@ public class GameBoard {
 	    }
 
         return heuristic;
+    }
+    
+    public int calculateBoardHeuristic() {
+    	int heuristic = 0;
+    	
+    	if (getLongestChain().getLength() >= 5) {
+    		if (getLongestChain().isOurChain()) {
+    			heuristic = 10000; // Utility value if we win
+		    } else {
+    			heuristic = -10000; // Utility value if we lose
+		    }
+	    } else {
+    		for (Move move : openMoves) { // If no open moves (draw) value is 0
+    			heuristic += calculateMoveHeuristic(move); // Add heuristic for each open move
+		    }
+	    }
+	    return heuristic;
     }
 
     public Chain getLongestChain() {
