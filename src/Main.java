@@ -7,22 +7,23 @@ public class Main {
 
     public static void main(String[] args){
         GameBoard.TileType myColor;
-        GameBoard.TileType oponentColor;
+        GameBoard.TileType opponentColor;
         LinkedList<Move> openMoves = new LinkedList<Move>();
+        LinkedList<Chain> chains = new LinkedList<Chain>();
 
         GameBoard board = new GameBoard();
         board.setOpenMoves(openMoves);
-        FileManager f = new FileManager("move_file_test", "test.go");
+        FileManager f = new FileManager("move_file", "gg_no_re.go");
 
         if(f.readMove() == null){
             myColor = GameBoard.TileType.WHITE;
-            oponentColor = GameBoard.TileType.BLACK;
+            opponentColor = GameBoard.TileType.BLACK;
         }else{
             myColor = GameBoard.TileType.BLACK;
-            oponentColor = GameBoard.TileType.WHITE;
+            opponentColor = GameBoard.TileType.WHITE;
         }
         board.ourColor = myColor;
-        board.theirColor = oponentColor;
+        board.theirColor = opponentColor;
 
         boolean boardFull = false;
         boolean win = false;
@@ -34,10 +35,9 @@ public class Main {
             System.out.println("Found Go File");
 
             Move lastMove = f.readMove();
-            win = board.checkWin(lastMove, oponentColor);
+            win = board.checkWin(lastMove, opponentColor);
 
-            board.saveMove(lastMove, oponentColor);
-            board.setLastEnemyMove(lastMove);
+            board.saveMove(lastMove, opponentColor);
 
 
             Move myMove = board.getBestMove();

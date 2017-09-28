@@ -4,24 +4,27 @@
 public class Move {
     private int column;
     private int row;
+    boolean isOurMove;
 
-    public Move(int x, int y){
+    public Move(int x, int y, boolean isOurMove){
         column = x;
         row = y;
+        this.isOurMove = isOurMove;
     }
 
-    public Move(String x, int y){
+    public Move(String x, int y, boolean isOurMove){
         column = getColumnNum(x);
         row = y;
+        this.isOurMove = isOurMove;
     }
 
     public String toString(){
-        int outRow = row+1;
+        int outRow = row + 1;
         String s = "TeamName " + getColumnChar(column) + " " + outRow;
         return s;
     }
-
-    public int getColumnNum(String s){
+	
+	public int getColumnNum(String s){
         switch(s) {
             case "A" : return 1;
             case "B" : return 2;

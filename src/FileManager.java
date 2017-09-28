@@ -34,7 +34,7 @@ public class FileManager {
             String opponentName = scanner.next();
             String column = scanner.next();
             int row = Integer.parseInt(scanner.next());
-            return new Move(column, row);
+            return new Move(column, row, false);
         }catch(Exception e){
             System.out.println(e);
         }
