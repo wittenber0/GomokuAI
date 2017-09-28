@@ -41,8 +41,15 @@ public class Chain {
     public Move getLowTerminal() {return lowTerminal;}
     
     public Move getHighTerminal() {return highTerminal;}
-    
-    public Move respondToMove(Move newMove) {
+
+	/**
+	 * This function will be used to update all of the chains on a given board by checking if the new move added to any of them or blocked any of their terminal
+	 * ends depending on which player moved. As stated in previous comments, it doesn't matter which player owns the chain because we want to block it
+	 * no matter what.
+	 * @param newMove The new move to consider for the chains.
+	 * @return Returns a move to see if the move connected two previously existing chains or connected this chain to another move.
+	 */
+	public Move respondToMove(Move newMove) {
 	    
 	    if (newMove.isOurMove == isOurChain) {
     		if (lowTerminal.equals(newMove)) {
