@@ -60,7 +60,8 @@ public class Chain {
     
     public Move getHighTerminal() {return highTerminal;}
     
-    public void respondToMove(Move newMove) {
+    public Move respondToMove(Move newMove) {
+	    
 	    if (newMove.isOurMove == isOurChain) {
     		if (lowTerminal.equals(newMove)) {
     			moves[length] = newMove;
@@ -71,29 +72,78 @@ public class Chain {
 				    		numOpenTerminals -= 1;
 				    		lowTerminal = null;
 					    } else {
-				    		// Access tile type from parent board to determine if to end chain (other player's tile is adjacent),
-						    // extend chain (our tile is adjacent), or set new terminal (empty tile is adjacent)
+				    		lowTerminal = new Move(newMove.getRow(), newMove.getColumn() - 1, newMove.isOurMove);
+				    		return lowTerminal;
 					    }
 					    break;
 				    case VERTICAL:
+					    if (newMove.getRow() <= 0) {
+						    numOpenTerminals -= 1;
+						    lowTerminal = null;
+					    } else {
+						    lowTerminal = new Move(newMove.getRow() - 1, newMove.getColumn(), newMove.isOurMove);
+						    return lowTerminal;
+					    }
 					    break;
 				    case DIAG_UP:
+					    if (newMove.getRow() >= 14 || newMove.getColumn() <= 0) {
+						    numOpenTerminals -= 1;
+						    lowTerminal = null;
+					    } else {
+						    lowTerminal = new Move(newMove.getRow() + 1, newMove.getColumn() - 1, newMove.isOurMove);
+						    return lowTerminal;
+					    }
 					    break;
 				    case DIAG_DOWN:
 				    default:
+					    if (newMove.getRow() <= 0 || newMove.getColumn() <= 0) {
+						    numOpenTerminals -= 1;
+						    lowTerminal = null;
+					    } else {
+						    lowTerminal = new Move(newMove.getRow() - 1, newMove.getColumn() - 1, newMove.isOurMove);
+						    return lowTerminal;
+					    }
 					    break;
 			    }
 		    } else if (highTerminal.equals(newMove)) {
     			length += 1;
     			switch(direction) {
 				    case HORIZONTAL:
+					    if (newMove.getColumn() >= 14) {
+						    numOpenTerminals -= 1;
+						    highTerminal = null;
+					    } else {
+						    highTerminal = new Move(newMove.getRow(), newMove.getColumn() + 1, newMove.isOurMove);
+						    return highTerminal;
+					    }
 					    break;
 				    case VERTICAL:
+					    if (newMove.getRow() >= 14) {
+						    numOpenTerminals -= 1;
+						    highTerminal = null;
+					    } else {
+						    highTerminal = new Move(newMove.getRow() + 1, newMove.getColumn(), newMove.isOurMove);
+						    return highTerminal;
+					    }
 					    break;
 				    case DIAG_UP:
+					    if (newMove.getRow() <= 0 || newMove.getColumn() >= 14) {
+						    numOpenTerminals -= 1;
+						    highTerminal = null;
+					    } else {
+						    highTerminal = new Move(newMove.getRow() - 1, newMove.getColumn() + 1, newMove.isOurMove);
+						    return highTerminal;
+					    }
 					    break;
 				    case DIAG_DOWN:
 				    default:
+					    if (newMove.getRow() >= 14 || newMove.getColumn() >= 14) {
+						    numOpenTerminals -= 1;
+						    highTerminal = null;
+					    } else {
+						    highTerminal = new Move(newMove.getRow() + 1, newMove.getColumn() + 1, newMove.isOurMove);
+						    return highTerminal;
+					    }
 					    break;
 			    }
 		    }
@@ -106,6 +156,7 @@ public class Chain {
 			    numOpenTerminals -= 1;
 		    }
 	    }
+	    return null;
     }
 
     public int getNumOpenTerminals() {

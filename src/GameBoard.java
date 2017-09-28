@@ -221,6 +221,10 @@ public class GameBoard {
     
     public void respondToMove(Move newMove) {
 	    Move moveToAdd;
+	    Move newTerminal;
+	    TileType newTerminalType;
+	    boolean newMoveToProcess;
+	    Move moveToProcess;
 	    
 	    int lowerRowLimit = Math.max(0, newMove.getRow() - 1);
 	    int upperRowLimit = Math.min(14, newMove.getRow() + 1);
@@ -248,7 +252,22 @@ public class GameBoard {
 	    }
 	
 	    for (Chain chain: chains) {
-	    	chain.respondToMove(newMove);
+	    	newMoveToProcess = true;
+	    	moveToProcess = newMove;
+	    	
+	    	while (newMoveToProcess) {
+			    moveToProcess = chain.respondToMove(moveToProcess);
+			    newMoveToProcess = (moveToProcess != null);
+			    
+			    if (newMoveToProcess) {
+				    newTerminalType = board[moveToProcess.getRow()][moveToProcess.getColumn()];
+				    newMoveToProcess = (newTerminalType != TileType.EMPTY);
+				    
+				    if (newMoveToProcess) {
+				    	moveToProcess.isOurMove = (newTerminalType == ourColor);
+				    }
+			    }
+		    }
 	    }
     }
 }
