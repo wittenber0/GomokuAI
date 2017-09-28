@@ -5,7 +5,7 @@ public class Main {
         GameBoard.TileType opponentColor;
 
         GameBoard board = new GameBoard();
-        FileManager f = new FileManager("move_file", "gg_no_re.go");
+        FileManager f = new FileManager("move_file", "RIPHughHefner.go");
 
         if(f.readMove() == null){
             myColor = GameBoard.TileType.WHITE;
