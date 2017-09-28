@@ -11,7 +11,7 @@ public class GameBoard {
     TileType ourColor;
     TileType theirColor;
     LinkedList<Chain> chains;
-    int totalHeuristic = 0;
+    int totalHeuristic;
 
     /**
      * This will initialize the gameboard to all blank tiles.
@@ -35,6 +35,7 @@ public class GameBoard {
         chains = previous.chains;
         ourColor = previous.ourColor;
         theirColor = previous.theirColor;
+        totalHeuristic = calculateBoardHeuristic();
 
         respondToMove(newMove);
     }
@@ -105,7 +106,14 @@ public class GameBoard {
 
         return heuristic;
     }
-    
+
+    /**
+     * This function will total the heuristic value of the game board and serve as both our utility and evaluation functions in
+     * almost a piecewise manor. If the game is won, the heuristic will spit out the utility function. Because this game is
+     * adversarial, once the goal state is reached, whether or not we found an optimal solution is irrelevant besides the case
+     * where we might want to use the game as a training set for machine learning.
+     * @return
+     */
     public int calculateBoardHeuristic() {
     	int heuristic = 0;
     	
@@ -196,14 +204,24 @@ public class GameBoard {
 	    
 	    addChains(newMove);
     }
-    
+
+    /**
+     * The calling function to check for chains in each direction.
+     * @param newMove The new move on the game board.
+     */
     public void addChains(Move newMove) {
     	addChainsInDirection(newMove, ChainDirection.HORIZONTAL);
     	addChainsInDirection(newMove, ChainDirection.VERTICAL);
     	addChainsInDirection(newMove, ChainDirection.DIAG_UP);
     	addChainsInDirection(newMove, ChainDirection.DIAG_DOWN);
     }
-    
+
+    /**
+     * This function will search the game board for new chains that might have been created on the last move. The reason for the switch statement
+     * is so that we can break out of searches more easily to save time.
+     * @param newMove The new move on the game board.
+     * @param direction The direction to search for the new chain in.
+     */
     public void addChainsInDirection(Move newMove, ChainDirection direction) {
 	    int column = newMove.getColumn();
 	    int row = newMove.getRow();
