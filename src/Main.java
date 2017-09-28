@@ -35,13 +35,12 @@ public class Main {
             System.out.println("Found Go File");
 
             Move lastMove = f.readMove();
-            win = board.checkWin(lastMove, opponentColor);
 
-            board.saveMove(lastMove, opponentColor);
+            board.saveMove(lastMove);
 
 
             Move myMove = board.getBestMove();
-            boardFull = board.saveMove(myMove, myColor);
+            boardFull = board.saveMove(myMove);
 
             if(boardFull == false) {
                 f.writeMove(myMove);

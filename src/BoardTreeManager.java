@@ -13,11 +13,7 @@ public class BoardTreeManager {
         currentBoard = b;
     }
 
-    public void callMinimax(int depth, int turn){
-        minimax(depth, turn);
-    }
-
-    public int minimax(int depth, int turn) {
+    public int minimax(int depth, boolean ourTurn) {
         if (currentBoard.getLongestChain().getLength() >= 5)
             return currentBoard.getLongestChain().isOurChain() ? currentBoard.ourTotalHueristic : currentBoard.theirTotalHueristic;
 
@@ -28,21 +24,21 @@ public class BoardTreeManager {
         for (int i = 0; i < currentBoard.openMoves.size(); ++i) {
             Move move = currentBoard.openMoves.get(i);
 
-            if (turn == 1) {
+            if (ourTurn) {
                 currentBoard.getBestMove();
-                int currentScore = minimax(depth + 1, 2);
+                int currentScore = minimax(depth + 1, false);
                 scores.add(currentScore);
 
                 if (depth == 0)
                     possibleMoves.add(new GameBoard(currentBoard, move));
 
-            } else if (turn == 2) {
+            } else if (!ourTurn) {
                 currentBoard.saveMove(move);
-                scores.add(minimax(depth + 1, 1));
+                scores.add(minimax(depth + 1, true));
             }
             currentBoard.board[move.getRow()][move.getColumn()] = GameBoard.TileType.EMPTY;
         }
-        return turn == 1 ? returnMax(scores) : returnMin(scores);
+        return ourTurn ? returnMax(scores) : returnMin(scores);
     }
 
     private Integer returnMax(ArrayList<Integer> scores) {
