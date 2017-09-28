@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3d5e6074-b50d-43dd-b5b8-f9c303af9192" name="Default" comment="">
+    <list default="true" id="3d5e6074-b50d-43dd-b5b8-f9c303af9192" name="Default" comment="Chain.respondToMove">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Chain.java" afterPath="$PROJECT_DIR$/src/Chain.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/GameBoard.java" afterPath="$PROJECT_DIR$/src/GameBoard.java" />
@@ -19,18 +19,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="GameBoard.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="GameBoard.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/GameBoard.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="418">
-              <caret line="264" column="20" lean-forward="false" selection-start-line="264" selection-start-column="20" selection-end-line="264" selection-end-column="20" />
+            <state relative-caret-position="223">
+              <caret line="380" column="62" lean-forward="false" selection-start-line="380" selection-start-column="62" selection-end-line="380" selection-end-column="62" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="docComment;class#GameBoard#0" expanded="true" />
-                <element signature="e#986#987#0" expanded="true" />
-                <element signature="e#1028#1029#0" expanded="true" />
-                <element signature="e#1066#1067#0" expanded="true" />
-                <element signature="e#1099#1100#0" expanded="true" />
+                <element signature="docComment;method#GameBoard#0;class#GameBoard#0" expanded="true" />
+                <element signature="docComment;method#GameBoard#1;class#GameBoard#0" expanded="true" />
+                <element signature="docComment;method#getBoard#0;class#GameBoard#0" expanded="true" />
+                <element signature="e#1280#1281#0" expanded="true" />
+                <element signature="e#1313#1314#0" expanded="true" />
+                <element signature="docComment;method#saveMove#0;class#GameBoard#0" expanded="true" />
+                <element signature="docComment;method#getBestMove#0;class#GameBoard#0" expanded="true" />
+                <element signature="docComment;method#calculateHeuristic#0;class#GameBoard#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -39,9 +42,27 @@
       <file leaf-file-name="FileManager.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/FileManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="22" column="27" lean-forward="true" selection-start-line="22" selection-start-column="27" selection-end-line="22" selection-end-column="27" />
-              <folding />
+            <state relative-caret-position="163">
+              <caret line="18" column="27" lean-forward="true" selection-start-line="18" selection-start-column="27" selection-end-line="18" selection-end-column="27" />
+              <folding>
+                <marker date="1506576775000" expanded="true" signature="218:307" ph="{...}" />
+                <marker date="1506576775000" expanded="true" signature="342:613" ph="{...}" />
+                <marker date="1506576775000" expanded="true" signature="641:1027" ph="{...}" />
+                <marker date="1506576775000" expanded="false" signature="1060:1070" ph=" { " />
+                <marker date="1506576775000" expanded="false" signature="1093:1099" ph=" }" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BoardTreeManager.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/BoardTreeManager.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-30">
+              <caret line="6" column="0" lean-forward="true" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+              <folding>
+                <marker date="1506576775000" expanded="true" signature="1227:1234" ph="{...}" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -49,19 +70,24 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="555">
-              <caret line="39" column="52" lean-forward="false" selection-start-line="39" selection-start-column="52" selection-end-line="39" selection-end-column="52" />
-              <folding />
+            <state relative-caret-position="270">
+              <caret line="18" column="0" lean-forward="true" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+              <folding>
+                <marker date="1506576815000" expanded="true" signature="255:1089" ph="{...}" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Chain.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Chain.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Chain.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="608">
-              <caret line="139" column="50" lean-forward="false" selection-start-line="139" selection-start-column="50" selection-end-line="139" selection-end-column="50" />
-              <folding />
+            <state relative-caret-position="300">
+              <caret line="20" column="8" lean-forward="true" selection-start-line="20" selection-start-column="8" selection-end-line="20" selection-end-column="8" />
+              <folding>
+                <element signature="e#915#916#0" expanded="true" />
+                <element signature="e#948#949#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -70,12 +96,18 @@
         <entry file="file://$PROJECT_DIR$/src/Move.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="7">
-              <caret line="24" column="5" lean-forward="false" selection-start-line="24" selection-start-column="5" selection-end-line="24" selection-end-column="5" />
+              <caret line="21" column="5" lean-forward="false" selection-start-line="21" selection-start-column="5" selection-end-line="21" selection-end-column="5" />
               <folding>
-                <element signature="e#2049#2050#0" expanded="true" />
-                <element signature="e#2080#2081#0" expanded="true" />
-                <element signature="e#2109#2110#0" expanded="true" />
-                <element signature="e#2143#2144#0" expanded="true" />
+                <marker date="1506576775000" expanded="true" signature="137:217" ph="{...}" />
+                <marker date="1506576775000" expanded="true" signature="270:364" ph="{...}" />
+                <marker date="1506576775000" expanded="true" signature="394:520" ph="{...}" />
+                <marker date="1506576775000" expanded="true" signature="557:1127" ph="{...}" />
+                <marker date="1506576775000" expanded="true" signature="1168:1983" ph="{...}" />
+                <marker date="1506576775000" expanded="true" signature="2008:2018" ph=" { " />
+                <marker date="1506576775000" expanded="true" signature="2034:2040" ph=" }" />
+                <marker date="1506576775000" expanded="true" signature="2068:2078" ph=" { " />
+                <marker date="1506576775000" expanded="true" signature="2097:2103" ph=" }" />
+                <marker date="1506576775000" expanded="true" signature="2155:2388" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -107,12 +139,12 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/heuristicIdeas.txt" />
-        <option value="$PROJECT_DIR$/src/BoardTreeManager.java" />
         <option value="$PROJECT_DIR$/src/Move.java" />
         <option value="$PROJECT_DIR$/src/FileManager.java" />
+        <option value="$PROJECT_DIR$/src/BoardTreeManager.java" />
         <option value="$PROJECT_DIR$/src/Main.java" />
-        <option value="$PROJECT_DIR$/src/GameBoard.java" />
         <option value="$PROJECT_DIR$/src/Chain.java" />
+        <option value="$PROJECT_DIR$/src/GameBoard.java" />
       </list>
     </option>
   </component>
@@ -201,6 +233,7 @@
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="UPDATED" />
           <PATH vcs="Git" revision="">$PROJECT_DIR$/src/BoardTreeManager.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/FileManager.java</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/src/GameBoard.java</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/src/Main.java</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/src/Move.java</PATH>
@@ -642,11 +675,18 @@
       <option name="project" value="LOCAL" />
       <updated>1506563310413</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Chain.respondToMove">
+      <created>1506566037100</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1506566037100</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="15280000" />
+    <option name="totallyTimeSpent" value="22330000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1344" height="756" extended-state="0" />
@@ -660,7 +700,7 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32921347" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3287879" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34269664" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -739,6 +779,32 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="RECENTLY_FILTERED_USER_GROUPS">
+                <collection />
+              </option>
+              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+                <collection />
+              </option>
+              <option name="COLUMN_ORDER">
+                <list>
+                  <option value="0" />
+                  <option value="1" />
+                  <option value="2" />
+                  <option value="3" />
+                </list>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
@@ -748,7 +814,8 @@
     <MESSAGE value="waiting for .go file" />
     <MESSAGE value="checking win conditions" />
     <MESSAGE value="Working on chains' responding to new moves and creating boards from old boards with a new move" />
-    <option name="LAST_COMMIT_MESSAGE" value="Working on chains' responding to new moves and creating boards from old boards with a new move" />
+    <MESSAGE value="Chain.respondToMove" />
+    <option name="LAST_COMMIT_MESSAGE" value="Chain.respondToMove" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -765,11 +832,14 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="docComment;class#GameBoard#0" expanded="true" />
-            <element signature="e#986#987#0" expanded="true" />
-            <element signature="e#1028#1029#0" expanded="true" />
-            <element signature="e#1066#1067#0" expanded="true" />
-            <element signature="e#1099#1100#0" expanded="true" />
+            <element signature="docComment;method#GameBoard#0;class#GameBoard#0" expanded="true" />
+            <element signature="docComment;method#GameBoard#1;class#GameBoard#0" expanded="true" />
+            <element signature="docComment;method#getBoard#0;class#GameBoard#0" expanded="true" />
+            <element signature="e#1280#1281#0" expanded="true" />
+            <element signature="e#1313#1314#0" expanded="true" />
+            <element signature="docComment;method#saveMove#0;class#GameBoard#0" expanded="true" />
+            <element signature="docComment;method#getBestMove#0;class#GameBoard#0" expanded="true" />
+            <element signature="docComment;method#calculateHeuristic#0;class#GameBoard#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -780,11 +850,14 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="docComment;class#GameBoard#0" expanded="true" />
-            <element signature="e#986#987#0" expanded="true" />
-            <element signature="e#1028#1029#0" expanded="true" />
-            <element signature="e#1066#1067#0" expanded="true" />
-            <element signature="e#1099#1100#0" expanded="true" />
+            <element signature="docComment;method#GameBoard#0;class#GameBoard#0" expanded="true" />
+            <element signature="docComment;method#GameBoard#1;class#GameBoard#0" expanded="true" />
+            <element signature="docComment;method#getBoard#0;class#GameBoard#0" expanded="true" />
+            <element signature="e#1280#1281#0" expanded="true" />
+            <element signature="e#1313#1314#0" expanded="true" />
+            <element signature="docComment;method#saveMove#0;class#GameBoard#0" expanded="true" />
+            <element signature="docComment;method#getBestMove#0;class#GameBoard#0" expanded="true" />
+            <element signature="docComment;method#calculateHeuristic#0;class#GameBoard#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -795,11 +868,14 @@
           <caret line="24" column="0" lean-forward="true" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="docComment;class#GameBoard#0" expanded="true" />
-            <element signature="e#986#987#0" expanded="true" />
-            <element signature="e#1028#1029#0" expanded="true" />
-            <element signature="e#1066#1067#0" expanded="true" />
-            <element signature="e#1099#1100#0" expanded="true" />
+            <element signature="docComment;method#GameBoard#0;class#GameBoard#0" expanded="true" />
+            <element signature="docComment;method#GameBoard#1;class#GameBoard#0" expanded="true" />
+            <element signature="docComment;method#getBoard#0;class#GameBoard#0" expanded="true" />
+            <element signature="e#1280#1281#0" expanded="true" />
+            <element signature="e#1313#1314#0" expanded="true" />
+            <element signature="docComment;method#saveMove#0;class#GameBoard#0" expanded="true" />
+            <element signature="docComment;method#getBestMove#0;class#GameBoard#0" expanded="true" />
+            <element signature="docComment;method#calculateHeuristic#0;class#GameBoard#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -810,11 +886,14 @@
           <caret line="11" column="49" lean-forward="false" selection-start-line="11" selection-start-column="49" selection-end-line="11" selection-end-column="49" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="docComment;class#GameBoard#0" expanded="true" />
-            <element signature="e#986#987#0" expanded="true" />
-            <element signature="e#1028#1029#0" expanded="true" />
-            <element signature="e#1066#1067#0" expanded="true" />
-            <element signature="e#1099#1100#0" expanded="true" />
+            <element signature="docComment;method#GameBoard#0;class#GameBoard#0" expanded="true" />
+            <element signature="docComment;method#GameBoard#1;class#GameBoard#0" expanded="true" />
+            <element signature="docComment;method#getBoard#0;class#GameBoard#0" expanded="true" />
+            <element signature="e#1280#1281#0" expanded="true" />
+            <element signature="e#1313#1314#0" expanded="true" />
+            <element signature="docComment;method#saveMove#0;class#GameBoard#0" expanded="true" />
+            <element signature="docComment;method#getBestMove#0;class#GameBoard#0" expanded="true" />
+            <element signature="docComment;method#calculateHeuristic#0;class#GameBoard#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -856,11 +935,14 @@
           <caret line="11" column="49" lean-forward="false" selection-start-line="11" selection-start-column="49" selection-end-line="11" selection-end-column="49" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="docComment;class#GameBoard#0" expanded="true" />
-            <element signature="e#986#987#0" expanded="true" />
-            <element signature="e#1028#1029#0" expanded="true" />
-            <element signature="e#1066#1067#0" expanded="true" />
-            <element signature="e#1099#1100#0" expanded="true" />
+            <element signature="docComment;method#GameBoard#0;class#GameBoard#0" expanded="true" />
+            <element signature="docComment;method#GameBoard#1;class#GameBoard#0" expanded="true" />
+            <element signature="docComment;method#getBoard#0;class#GameBoard#0" expanded="true" />
+            <element signature="e#1280#1281#0" expanded="true" />
+            <element signature="e#1313#1314#0" expanded="true" />
+            <element signature="docComment;method#saveMove#0;class#GameBoard#0" expanded="true" />
+            <element signature="docComment;method#getBestMove#0;class#GameBoard#0" expanded="true" />
+            <element signature="docComment;method#calculateHeuristic#0;class#GameBoard#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -894,10 +976,16 @@
         <state relative-caret-position="225">
           <caret line="9" column="15" lean-forward="false" selection-start-line="9" selection-start-column="15" selection-end-line="9" selection-end-column="15" />
           <folding>
-            <element signature="e#2049#2050#0" expanded="true" />
-            <element signature="e#2080#2081#0" expanded="true" />
-            <element signature="e#2109#2110#0" expanded="true" />
-            <element signature="e#2143#2144#0" expanded="true" />
+            <marker date="1506576775000" expanded="true" signature="137:217" ph="{...}" />
+            <marker date="1506576775000" expanded="true" signature="270:364" ph="{...}" />
+            <marker date="1506576775000" expanded="true" signature="394:520" ph="{...}" />
+            <marker date="1506576775000" expanded="true" signature="557:1127" ph="{...}" />
+            <marker date="1506576775000" expanded="true" signature="1168:1983" ph="{...}" />
+            <marker date="1506576775000" expanded="true" signature="2008:2018" ph=" { " />
+            <marker date="1506576775000" expanded="true" signature="2034:2040" ph=" }" />
+            <marker date="1506576775000" expanded="true" signature="2068:2078" ph=" { " />
+            <marker date="1506576775000" expanded="true" signature="2097:2103" ph=" }" />
+            <marker date="1506576775000" expanded="true" signature="2155:2388" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -936,11 +1024,14 @@
           <caret line="48" column="0" lean-forward="true" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="docComment;class#GameBoard#0" expanded="true" />
-            <element signature="e#986#987#0" expanded="true" />
-            <element signature="e#1028#1029#0" expanded="true" />
-            <element signature="e#1066#1067#0" expanded="true" />
-            <element signature="e#1099#1100#0" expanded="true" />
+            <element signature="docComment;method#GameBoard#0;class#GameBoard#0" expanded="true" />
+            <element signature="docComment;method#GameBoard#1;class#GameBoard#0" expanded="true" />
+            <element signature="docComment;method#getBoard#0;class#GameBoard#0" expanded="true" />
+            <element signature="e#1280#1281#0" expanded="true" />
+            <element signature="e#1313#1314#0" expanded="true" />
+            <element signature="docComment;method#saveMove#0;class#GameBoard#0" expanded="true" />
+            <element signature="docComment;method#getBestMove#0;class#GameBoard#0" expanded="true" />
+            <element signature="docComment;method#calculateHeuristic#0;class#GameBoard#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -950,10 +1041,16 @@
         <state relative-caret-position="475">
           <caret line="19" column="69" lean-forward="false" selection-start-line="19" selection-start-column="69" selection-end-line="19" selection-end-column="69" />
           <folding>
-            <element signature="e#2049#2050#0" expanded="true" />
-            <element signature="e#2080#2081#0" expanded="true" />
-            <element signature="e#2109#2110#0" expanded="true" />
-            <element signature="e#2143#2144#0" expanded="true" />
+            <marker date="1506576775000" expanded="true" signature="137:217" ph="{...}" />
+            <marker date="1506576775000" expanded="true" signature="270:364" ph="{...}" />
+            <marker date="1506576775000" expanded="true" signature="394:520" ph="{...}" />
+            <marker date="1506576775000" expanded="true" signature="557:1127" ph="{...}" />
+            <marker date="1506576775000" expanded="true" signature="1168:1983" ph="{...}" />
+            <marker date="1506576775000" expanded="true" signature="2008:2018" ph=" { " />
+            <marker date="1506576775000" expanded="true" signature="2034:2040" ph=" }" />
+            <marker date="1506576775000" expanded="true" signature="2068:2078" ph=" { " />
+            <marker date="1506576775000" expanded="true" signature="2097:2103" ph=" }" />
+            <marker date="1506576775000" expanded="true" signature="2155:2388" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -981,11 +1078,14 @@
           <caret line="31" column="9" lean-forward="false" selection-start-line="31" selection-start-column="9" selection-end-line="31" selection-end-column="9" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="docComment;class#GameBoard#0" expanded="true" />
-            <element signature="e#986#987#0" expanded="true" />
-            <element signature="e#1028#1029#0" expanded="true" />
-            <element signature="e#1066#1067#0" expanded="true" />
-            <element signature="e#1099#1100#0" expanded="true" />
+            <element signature="docComment;method#GameBoard#0;class#GameBoard#0" expanded="true" />
+            <element signature="docComment;method#GameBoard#1;class#GameBoard#0" expanded="true" />
+            <element signature="docComment;method#getBoard#0;class#GameBoard#0" expanded="true" />
+            <element signature="e#1280#1281#0" expanded="true" />
+            <element signature="e#1313#1314#0" expanded="true" />
+            <element signature="docComment;method#saveMove#0;class#GameBoard#0" expanded="true" />
+            <element signature="docComment;method#getBestMove#0;class#GameBoard#0" expanded="true" />
+            <element signature="docComment;method#calculateHeuristic#0;class#GameBoard#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1004,7 +1104,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="500">
           <caret line="23" column="45" lean-forward="false" selection-start-line="23" selection-start-column="45" selection-end-line="23" selection-end-column="45" />
-          <folding />
+          <folding>
+            <marker date="1506576775000" expanded="true" signature="218:307" ph="{...}" />
+            <marker date="1506576775000" expanded="true" signature="342:613" ph="{...}" />
+            <marker date="1506576775000" expanded="true" signature="641:1027" ph="{...}" />
+            <marker date="1506576775000" expanded="false" signature="1060:1070" ph=" { " />
+            <marker date="1506576775000" expanded="false" signature="1093:1099" ph=" }" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1013,10 +1119,16 @@
         <state relative-caret-position="475">
           <caret line="19" column="69" lean-forward="false" selection-start-line="19" selection-start-column="69" selection-end-line="19" selection-end-column="69" />
           <folding>
-            <element signature="e#2049#2050#0" expanded="true" />
-            <element signature="e#2080#2081#0" expanded="true" />
-            <element signature="e#2109#2110#0" expanded="true" />
-            <element signature="e#2143#2144#0" expanded="true" />
+            <marker date="1506576775000" expanded="true" signature="137:217" ph="{...}" />
+            <marker date="1506576775000" expanded="true" signature="270:364" ph="{...}" />
+            <marker date="1506576775000" expanded="true" signature="394:520" ph="{...}" />
+            <marker date="1506576775000" expanded="true" signature="557:1127" ph="{...}" />
+            <marker date="1506576775000" expanded="true" signature="1168:1983" ph="{...}" />
+            <marker date="1506576775000" expanded="true" signature="2008:2018" ph=" { " />
+            <marker date="1506576775000" expanded="true" signature="2034:2040" ph=" }" />
+            <marker date="1506576775000" expanded="true" signature="2068:2078" ph=" { " />
+            <marker date="1506576775000" expanded="true" signature="2097:2103" ph=" }" />
+            <marker date="1506576775000" expanded="true" signature="2155:2388" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -1042,11 +1154,14 @@
           <caret line="11" column="49" lean-forward="false" selection-start-line="11" selection-start-column="49" selection-end-line="11" selection-end-column="49" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="docComment;class#GameBoard#0" expanded="true" />
-            <element signature="e#986#987#0" expanded="true" />
-            <element signature="e#1028#1029#0" expanded="true" />
-            <element signature="e#1066#1067#0" expanded="true" />
-            <element signature="e#1099#1100#0" expanded="true" />
+            <element signature="docComment;method#GameBoard#0;class#GameBoard#0" expanded="true" />
+            <element signature="docComment;method#GameBoard#1;class#GameBoard#0" expanded="true" />
+            <element signature="docComment;method#getBoard#0;class#GameBoard#0" expanded="true" />
+            <element signature="e#1280#1281#0" expanded="true" />
+            <element signature="e#1313#1314#0" expanded="true" />
+            <element signature="docComment;method#saveMove#0;class#GameBoard#0" expanded="true" />
+            <element signature="docComment;method#getBestMove#0;class#GameBoard#0" expanded="true" />
+            <element signature="docComment;method#calculateHeuristic#0;class#GameBoard#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1065,7 +1180,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="350">
           <caret line="19" column="37" lean-forward="false" selection-start-line="19" selection-start-column="37" selection-end-line="19" selection-end-column="37" />
-          <folding />
+          <folding>
+            <marker date="1506576775000" expanded="true" signature="218:307" ph="{...}" />
+            <marker date="1506576775000" expanded="true" signature="342:613" ph="{...}" />
+            <marker date="1506576775000" expanded="true" signature="641:1027" ph="{...}" />
+            <marker date="1506576775000" expanded="false" signature="1060:1070" ph=" { " />
+            <marker date="1506576775000" expanded="false" signature="1093:1099" ph=" }" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1090,11 +1211,14 @@
           <caret line="11" column="49" lean-forward="false" selection-start-line="11" selection-start-column="49" selection-end-line="11" selection-end-column="49" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="docComment;class#GameBoard#0" expanded="true" />
-            <element signature="e#986#987#0" expanded="true" />
-            <element signature="e#1028#1029#0" expanded="true" />
-            <element signature="e#1066#1067#0" expanded="true" />
-            <element signature="e#1099#1100#0" expanded="true" />
+            <element signature="docComment;method#GameBoard#0;class#GameBoard#0" expanded="true" />
+            <element signature="docComment;method#GameBoard#1;class#GameBoard#0" expanded="true" />
+            <element signature="docComment;method#getBoard#0;class#GameBoard#0" expanded="true" />
+            <element signature="e#1280#1281#0" expanded="true" />
+            <element signature="e#1313#1314#0" expanded="true" />
+            <element signature="docComment;method#saveMove#0;class#GameBoard#0" expanded="true" />
+            <element signature="docComment;method#getBestMove#0;class#GameBoard#0" expanded="true" />
+            <element signature="docComment;method#calculateHeuristic#0;class#GameBoard#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1113,7 +1237,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <marker date="1506576775000" expanded="true" signature="218:307" ph="{...}" />
+            <marker date="1506576775000" expanded="true" signature="342:613" ph="{...}" />
+            <marker date="1506576775000" expanded="true" signature="641:1027" ph="{...}" />
+            <marker date="1506576775000" expanded="false" signature="1060:1070" ph=" { " />
+            <marker date="1506576775000" expanded="false" signature="1093:1099" ph=" }" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1129,10 +1259,16 @@
         <state relative-caret-position="225">
           <caret line="9" column="15" lean-forward="false" selection-start-line="9" selection-start-column="15" selection-end-line="9" selection-end-column="15" />
           <folding>
-            <element signature="e#2049#2050#0" expanded="true" />
-            <element signature="e#2080#2081#0" expanded="true" />
-            <element signature="e#2109#2110#0" expanded="true" />
-            <element signature="e#2143#2144#0" expanded="true" />
+            <marker date="1506576775000" expanded="true" signature="137:217" ph="{...}" />
+            <marker date="1506576775000" expanded="true" signature="270:364" ph="{...}" />
+            <marker date="1506576775000" expanded="true" signature="394:520" ph="{...}" />
+            <marker date="1506576775000" expanded="true" signature="557:1127" ph="{...}" />
+            <marker date="1506576775000" expanded="true" signature="1168:1983" ph="{...}" />
+            <marker date="1506576775000" expanded="true" signature="2008:2018" ph=" { " />
+            <marker date="1506576775000" expanded="true" signature="2034:2040" ph=" }" />
+            <marker date="1506576775000" expanded="true" signature="2068:2078" ph=" { " />
+            <marker date="1506576775000" expanded="true" signature="2097:2103" ph=" }" />
+            <marker date="1506576775000" expanded="true" signature="2155:2388" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -1159,14 +1295,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/BoardTreeManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="275">
-          <caret line="11" column="22" lean-forward="true" selection-start-line="11" selection-start-column="22" selection-end-line="11" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/heuristicIdeas.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
@@ -1175,55 +1303,85 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/FileManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="22" column="27" lean-forward="true" selection-start-line="22" selection-start-column="27" selection-end-line="22" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Move.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="7">
-          <caret line="24" column="5" lean-forward="false" selection-start-line="24" selection-start-column="5" selection-end-line="24" selection-end-column="5" />
+          <caret line="21" column="5" lean-forward="false" selection-start-line="21" selection-start-column="5" selection-end-line="21" selection-end-column="5" />
           <folding>
-            <element signature="e#2049#2050#0" expanded="true" />
-            <element signature="e#2080#2081#0" expanded="true" />
-            <element signature="e#2109#2110#0" expanded="true" />
-            <element signature="e#2143#2144#0" expanded="true" />
+            <marker date="1506576775000" expanded="true" signature="137:217" ph="{...}" />
+            <marker date="1506576775000" expanded="true" signature="270:364" ph="{...}" />
+            <marker date="1506576775000" expanded="true" signature="394:520" ph="{...}" />
+            <marker date="1506576775000" expanded="true" signature="557:1127" ph="{...}" />
+            <marker date="1506576775000" expanded="true" signature="1168:1983" ph="{...}" />
+            <marker date="1506576775000" expanded="true" signature="2008:2018" ph=" { " />
+            <marker date="1506576775000" expanded="true" signature="2034:2040" ph=" }" />
+            <marker date="1506576775000" expanded="true" signature="2068:2078" ph=" { " />
+            <marker date="1506576775000" expanded="true" signature="2097:2103" ph=" }" />
+            <marker date="1506576775000" expanded="true" signature="2155:2388" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/BoardTreeManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-30">
+          <caret line="6" column="0" lean-forward="true" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+          <folding>
+            <marker date="1506576775000" expanded="true" signature="1227:1234" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/FileManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="163">
+          <caret line="18" column="27" lean-forward="true" selection-start-line="18" selection-start-column="27" selection-end-line="18" selection-end-column="27" />
+          <folding>
+            <marker date="1506576775000" expanded="true" signature="218:307" ph="{...}" />
+            <marker date="1506576775000" expanded="true" signature="342:613" ph="{...}" />
+            <marker date="1506576775000" expanded="true" signature="641:1027" ph="{...}" />
+            <marker date="1506576775000" expanded="false" signature="1060:1070" ph=" { " />
+            <marker date="1506576775000" expanded="false" signature="1093:1099" ph=" }" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="555">
-          <caret line="39" column="52" lean-forward="false" selection-start-line="39" selection-start-column="52" selection-end-line="39" selection-end-column="52" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GameBoard.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="264" column="20" lean-forward="false" selection-start-line="264" selection-start-column="20" selection-end-line="264" selection-end-column="20" />
+        <state relative-caret-position="270">
+          <caret line="18" column="0" lean-forward="true" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="docComment;class#GameBoard#0" expanded="true" />
-            <element signature="e#986#987#0" expanded="true" />
-            <element signature="e#1028#1029#0" expanded="true" />
-            <element signature="e#1066#1067#0" expanded="true" />
-            <element signature="e#1099#1100#0" expanded="true" />
+            <marker date="1506576815000" expanded="true" signature="255:1089" ph="{...}" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Chain.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="608">
-          <caret line="139" column="50" lean-forward="false" selection-start-line="139" selection-start-column="50" selection-end-line="139" selection-end-column="50" />
-          <folding />
+        <state relative-caret-position="300">
+          <caret line="20" column="8" lean-forward="true" selection-start-line="20" selection-start-column="8" selection-end-line="20" selection-end-column="8" />
+          <folding>
+            <element signature="e#915#916#0" expanded="true" />
+            <element signature="e#948#949#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GameBoard.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="223">
+          <caret line="380" column="62" lean-forward="false" selection-start-line="380" selection-start-column="62" selection-end-line="380" selection-end-column="62" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="docComment;method#GameBoard#0;class#GameBoard#0" expanded="true" />
+            <element signature="docComment;method#GameBoard#1;class#GameBoard#0" expanded="true" />
+            <element signature="docComment;method#getBoard#0;class#GameBoard#0" expanded="true" />
+            <element signature="e#1280#1281#0" expanded="true" />
+            <element signature="e#1313#1314#0" expanded="true" />
+            <element signature="docComment;method#saveMove#0;class#GameBoard#0" expanded="true" />
+            <element signature="docComment;method#getBestMove#0;class#GameBoard#0" expanded="true" />
+            <element signature="docComment;method#calculateHeuristic#0;class#GameBoard#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

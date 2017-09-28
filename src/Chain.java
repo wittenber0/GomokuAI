@@ -1,3 +1,5 @@
+import java.util.LinkedList;
+
 enum ChainDirection {
 	VERTICAL, HORIZONTAL, DIAG_UP, DIAG_DOWN
 }
@@ -6,8 +8,6 @@ public class Chain {
 
     private int length;
     private Move moves[];
-    private Chain neighbors[];
-    private Chain intersections[];
     private ChainDirection direction;
     private int numOpenTerminals;
     private Move lowTerminal;
@@ -15,12 +15,18 @@ public class Chain {
     private boolean isOurChain;
     
 
-    public Chain(boolean isOurChain) {
+    public Chain(LinkedList<Move> moves, Move lowTerminal, Move highTerminal, int numOpenTerminals, boolean isOurChain) {
         this.length = 0;
-        this.moves = new Move[5];
-        this.neighbors = new Chain[10];
-        this.intersections = new Chain[10];
-        this.numOpenTerminals = 0;
+        this.moves = new Move[9];
+        
+        for (Move newMove : moves) {
+        	this.moves[length] = newMove;
+        	length += 1;
+        }
+        
+        this.lowTerminal = lowTerminal;
+        this.highTerminal = highTerminal;
+        this.numOpenTerminals = numOpenTerminals;
         this.isOurChain = isOurChain;
     }
 
@@ -30,34 +36,6 @@ public class Chain {
 
     public boolean isOurChain() {
         return isOurChain;
-    }
-
-    public void setLength(int length) {
-        this.length = length;
-    }
-
-    public Move[] getMoves() {
-        return moves;
-    }
-
-    public void setMoves(Move[] moves) {
-        this.moves = moves;
-    }
-
-    public Chain[] getNeighbors() {
-        return neighbors;
-    }
-
-    public void setNeighbors(Chain[] neighbors) {
-        this.neighbors = neighbors;
-    }
-
-    public Chain[] getIntersections() {
-        return intersections;
-    }
-
-    public void setIntersections(Chain[] intersections) {
-        this.intersections = intersections;
     }
     
     public Move getLowTerminal() {return lowTerminal;}

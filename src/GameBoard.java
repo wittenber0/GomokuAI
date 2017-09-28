@@ -1,6 +1,7 @@
 import java.util.HashMap;
 import java.util.LinkedList;
 
+import static java.lang.Math.PI;
 import static java.lang.Math.abs;
 
 public class GameBoard {
@@ -92,9 +93,18 @@ public class GameBoard {
      * @return The integer sum of the heuristic.
      */
     public int calculateHeuristic(int i, int j) {
-        int heuristic = 14 - abs(8-i) - abs(8-j);
+    	int heuristic  = 14 - abs(8-i) - abs(8-j);
+    	Move moveAtThisTile = new Move(i, j, true);
+    	Chain chainIncludingThisMove;
 	    
-        
+        for (Chain chain: chains) {
+        	if (chain.getLowTerminal().equals(moveAtThisTile) || chain.getHighTerminal().equals(moveAtThisTile)) {
+        		moveAtThisTile.isOurMove = chain.isOurChain();
+        		chainIncludingThisMove = chain;
+        		chainIncludingThisMove.respondToMove(moveAtThisTile);
+        		heuristic +=  (5 * chainIncludingThisMove.getLength() * (2 - chainIncludingThisMove.getNumOpenTerminals()));
+	        }
+	    }
 
         return heuristic;
     }
@@ -111,7 +121,6 @@ public class GameBoard {
 
     public void respondToMove(Move newMove) {
 	    Move moveToAdd;
-	    Move newTerminal;
 	    TileType newTerminalType;
 	    boolean newMoveToProcess;
 	    Move moveToProcess;
@@ -159,5 +168,233 @@ public class GameBoard {
 			    }
 		    }
 	    }
+	    
+	    addChains(newMove);
+    }
+    
+    public void addChains(Move newMove) {
+    	addChainsInDirection(newMove, ChainDirection.HORIZONTAL);
+    	addChainsInDirection(newMove, ChainDirection.VERTICAL);
+    	addChainsInDirection(newMove, ChainDirection.DIAG_UP);
+    	addChainsInDirection(newMove, ChainDirection.DIAG_DOWN);
+    }
+    
+    public void addChainsInDirection(Move newMove, ChainDirection direction) {
+	    int column = newMove.getColumn();
+	    int row = newMove.getRow();
+	
+	    boolean atLeftEdge = column <= 0;
+	    boolean atRightEdge = column >= 14;
+	    boolean atTopEdge = row <= 0;
+	    boolean atBottomEdge = row >= 14;
+	
+	    boolean canCreateChain = false;
+	    LinkedList<Move> movesToAdd = new LinkedList<>();
+	    movesToAdd.add(newMove);
+	    Move lowerTerminal = null;
+	    Move upperTerminal = null;
+	    TileType testValue;
+	
+	    switch(direction) {
+		    case HORIZONTAL:
+		    if (!atLeftEdge) {
+			    testValue = board[row][column - 1];
+			    if (testValue == TileType.EMPTY) {
+				    lowerTerminal = new Move(row, column - 1, newMove.isOurMove);
+			    } else if (testValue == (newMove.isOurMove ? ourColor : theirColor)) {
+				    canCreateChain = true;
+				    movesToAdd.add(lowerTerminal);
+				    if (column >= 2) {
+					    testValue = board[row][column - 2];
+					    if (testValue == (newMove.isOurMove ? ourColor : theirColor)) {
+						    return;
+					    } else if (testValue == TileType.EMPTY) {
+					    	lowerTerminal = new Move(row, column - 2, newMove.isOurMove);
+					    } else {
+					    	lowerTerminal = null;
+					    }
+				    } else {
+				    	lowerTerminal = null;
+				    }
+			    }
+		    }
+		    if (!atRightEdge) {
+		    	testValue = board[row][column + 1];
+			    if (testValue == TileType.EMPTY) {
+			    	if (canCreateChain) {
+					    upperTerminal = new Move(row, column + 1, newMove.isOurMove);
+				    } else {
+			    		return;
+				    }
+			    } else if (testValue == (newMove.isOurMove ? ourColor : theirColor)) {
+				    canCreateChain = true;
+				    movesToAdd.add(new Move(row, column + 1, newMove.isOurMove));
+				    if (column <= 12) {
+					    testValue = board[row][column + 2];
+					    if (testValue == (newMove.isOurMove ? ourColor : theirColor)) {
+						    return;
+					    } else if (testValue == TileType.EMPTY) {
+						    upperTerminal = new Move(row, column + 2, newMove.isOurMove);
+					    } else {
+					    	upperTerminal = null;
+					    }
+				    } else {
+				    	upperTerminal = null;
+				    }
+			    }
+		    }
+		    break;
+		    case VERTICAL:
+			    if (!atTopEdge) {
+				    testValue = board[row - 1][column];
+				    if (testValue == TileType.EMPTY) {
+					    lowerTerminal = new Move(row - 1, column, newMove.isOurMove);
+				    } else if (testValue == (newMove.isOurMove ? ourColor : theirColor)) {
+					    canCreateChain = true;
+					    movesToAdd.add(new Move(row - 1, column, newMove.isOurMove));
+					    if (row >= 2) {
+						    testValue = board[row - 2][column];
+						    if (testValue == (newMove.isOurMove ? ourColor : theirColor)) {
+							    return;
+						    } else if (testValue == TileType.EMPTY) {
+							    lowerTerminal = new Move(row - 2, column, newMove.isOurMove);
+						    } else {
+							    lowerTerminal = null;
+						    }
+					    } else {
+						    lowerTerminal = null;
+					    }
+				    }
+			    }
+			    if (!atBottomEdge) {
+				    testValue = board[row + 1][column];
+				    if (testValue == TileType.EMPTY) {
+					    if (canCreateChain) {
+						    upperTerminal = new Move(row + 1, column, newMove.isOurMove);
+					    } else {
+						    return;
+					    }
+				    } else if (testValue == (newMove.isOurMove ? ourColor : theirColor)) {
+					    canCreateChain = true;
+					    movesToAdd.add(new Move(row + 1, column, newMove.isOurMove));
+					    if (row <= 12) {
+						    testValue = board[row + 2][column];
+						    if (testValue == (newMove.isOurMove ? ourColor : theirColor)) {
+							    return;
+						    } else if (testValue == TileType.EMPTY) {
+							    upperTerminal = new Move(row + 2, column, newMove.isOurMove);
+						    } else {
+							    upperTerminal = null;
+						    }
+					    } else {
+						    upperTerminal = null;
+					    }
+				    }
+			    }
+		    	break;
+		    case DIAG_UP:
+			    if (!atLeftEdge && !atBottomEdge) {
+				    testValue = board[row + 1][column - 1];
+				    if (testValue == TileType.EMPTY) {
+					    lowerTerminal = new Move(row + 1, column - 1, newMove.isOurMove);
+				    } else if (testValue == (newMove.isOurMove ? ourColor : theirColor)) {
+					    canCreateChain = true;
+					    movesToAdd.add(new Move(row + 1, column - 1, newMove.isOurMove));
+					    if (row >= 12 && column <= 2) {
+						    testValue = board[row + 2][column - 2];
+						    if (testValue == (newMove.isOurMove ? ourColor : theirColor)) {
+							    return;
+						    } else if (testValue == TileType.EMPTY) {
+							    lowerTerminal = new Move(row + 2, column - 2, newMove.isOurMove);
+						    } else {
+							    lowerTerminal = null;
+						    }
+					    } else {
+						    lowerTerminal = null;
+					    }
+				    }
+			    }
+			    if (!atRightEdge && !atTopEdge) {
+				    testValue = board[row - 1][column + 1];
+				    if (testValue == TileType.EMPTY) {
+					    if (canCreateChain) {
+						    upperTerminal = new Move(row - 1, column + 1, newMove.isOurMove);
+					    } else {
+						    return;
+					    }
+				    } else if (testValue == (newMove.isOurMove ? ourColor : theirColor)) {
+					    canCreateChain = true;
+					    movesToAdd.add(new Move(row - 1, column + 1, newMove.isOurMove));
+					    if (row >= 2 && column <= 12) {
+						    testValue = board[row - 2][column + 2];
+						    if (testValue == (newMove.isOurMove ? ourColor : theirColor)) {
+							    return;
+						    } else if (testValue == TileType.EMPTY) {
+							    upperTerminal = new Move(row - 2, column + 2, newMove.isOurMove);
+						    } else {
+							    upperTerminal = null;
+						    }
+					    } else {
+						    upperTerminal = null;
+					    }
+				    }
+			    }
+		    	break;
+		    case DIAG_DOWN:
+			    if (!atLeftEdge && !atTopEdge) {
+				    testValue = board[row - 1][column - 1];
+				    if (testValue == TileType.EMPTY) {
+					    lowerTerminal = new Move(row - 1, column - 1, newMove.isOurMove);
+				    } else if (testValue == (newMove.isOurMove ? ourColor : theirColor)) {
+					    canCreateChain = true;
+					    movesToAdd.add(new Move(row - 1, column - 1, newMove.isOurMove));
+					    if (row >= 2 && column >= 2) {
+						    testValue = board[row - 2][column - 2];
+						    if (testValue == (newMove.isOurMove ? ourColor : theirColor)) {
+							    return;
+						    } else if (testValue == TileType.EMPTY) {
+							    lowerTerminal = new Move(row - 2, column - 2, newMove.isOurMove);
+						    } else {
+							    lowerTerminal = null;
+						    }
+					    } else {
+						    lowerTerminal = null;
+					    }
+				    }
+			    }
+			    if (!atRightEdge && !atBottomEdge) {
+				    testValue = board[row + 1][column + 1];
+				    if (testValue == TileType.EMPTY) {
+					    if (canCreateChain) {
+						    upperTerminal = new Move(row + 1, column + 1, newMove.isOurMove);
+					    } else {
+						    return;
+					    }
+				    } else if (testValue == (newMove.isOurMove ? ourColor : theirColor)) {
+					    canCreateChain = true;
+					    movesToAdd.add(new Move(row + 1, column + 1, newMove.isOurMove));
+					    if (row <= 12 && column <= 12) {
+						    testValue = board[row + 2][column + 2];
+						    if (testValue == (newMove.isOurMove ? ourColor : theirColor)) {
+							    return;
+						    } else if (testValue == TileType.EMPTY) {
+							    upperTerminal = new Move(row + 2, column + 2, newMove.isOurMove);
+						    } else {
+							    upperTerminal = null;
+						    }
+					    } else {
+						    upperTerminal = null;
+					    }
+				    }
+			    }
+		    	break;
+	    }
+	
+	    if (canCreateChain) {
+		    int openTerminals = (lowerTerminal == null) ? 0 : 1;
+		    openTerminals = (upperTerminal == null) ? openTerminals : openTerminals + 1;
+		    chains.add(new Chain(movesToAdd, lowerTerminal, upperTerminal, openTerminals, newMove.isOurMove));
+	    }
+	    return;
     }
 }
