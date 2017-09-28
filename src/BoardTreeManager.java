@@ -1,61 +1,42 @@
-import java.util.ArrayList;
-import java.util.LinkedList;
+import javax.swing.tree.TreeNode;
 
-/**
- * Created by Ryan on 9/25/2017.
- */
 public class BoardTreeManager {
-    GameBoard headBoard;
-    GameBoard currentBoard;
-    LinkedList<GameBoard> possibleMoves = new LinkedList<GameBoard>();
-    public BoardTreeManager(GameBoard b){
-        headBoard = b;
-        currentBoard = b;
-    }
+    private int MAX_DEPTH = 2;
+    boolean known;
+    private TreeNode rootNode;
 
-    public int minimax(int depth, boolean ourTurn) {
-        if (currentBoard.getLongestChain().getLength() >= 5)
-            return currentBoard.getLongestChain().isOurChain() ? currentBoard.ourTotalHueristic : currentBoard.theirTotalHueristic;
+    public int minimax(GameBoard board, int depth, boolean max) {
+        if (board.getLongestChain().getLength() >= 5 || depth == MAX_DEPTH) {
+            return board.totalHeuristic;
+        }
 
-        if (currentBoard.openMoves.isEmpty()) return 0;
+        if (board.openMoves.isEmpty()) return 0;
 
-        ArrayList<Integer> scores = new ArrayList<>();
+        if (max) {
+            int bestValue = Integer.MIN_VALUE;
 
-        for (int i = 0; i < currentBoard.openMoves.size(); ++i) {
-            Move move = currentBoard.openMoves.get(i);
-
-            if (ourTurn) {
-                currentBoard.getBestMove();
-                int currentScore = minimax(depth + 1, false);
-                scores.add(currentScore);
-
-                if (depth == 0)
-                    possibleMoves.add(new GameBoard(currentBoard, move));
-
-            } else if (!ourTurn) {
-                currentBoard.saveMove(move);
-                scores.add(minimax(depth + 1, true));
+            for (int i = 0; i < board.openMoves.size(); i++) {
+                Move move = board.openMoves.get(i);
+                bestValue =  returnMax(bestValue, minimax(new GameBoard(board, move), depth+1, false));
             }
-            currentBoard.board[move.getRow()][move.getColumn()] = GameBoard.TileType.EMPTY;
+            return bestValue;
+
+        } else {
+            int bestValue = Integer.MAX_VALUE;
+
+            for (int i = 0; i < board.openMoves.size(); i++) {
+                Move move = board.openMoves.get(i);
+                bestValue =  returnMin(bestValue, minimax(new GameBoard(board, move), depth+1, true));
+            }
+            return bestValue;
         }
-        return ourTurn ? returnMax(scores) : returnMin(scores);
     }
 
-    private Integer returnMax(ArrayList<Integer> scores) {
-        Integer max = 0;
-        for(Integer score : scores) {
-            max = score > max ? score : max;
-        }
-
-        return max;
+    private Integer returnMax(int i, int j) {
+        return i > j ? i : j;
     }
 
-    private Integer returnMin(ArrayList<Integer> scores) {
-        Integer min = 0;
-        for(Integer score : scores) {
-            min = score < min ? score : min;
-        }
-
-        return min;
+    private Integer returnMin(int i, int j) {
+        return i < j ? i : j;
     }
 }

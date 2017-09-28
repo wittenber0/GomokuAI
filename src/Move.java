@@ -1,6 +1,3 @@
-/**
- * Created by Ryan on 9/20/2017.
- */
 public class Move {
     private int column;
     private int row;

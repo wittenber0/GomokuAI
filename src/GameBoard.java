@@ -1,20 +1,21 @@
+import java.util.HashMap;
 import java.util.LinkedList;
 
 import static java.lang.Math.abs;
 
-/**
- * Created by Luke on 20-Sep-17.
- */
 public class GameBoard {
     public enum TileType {BLACK, WHITE, EMPTY}
     public TileType[][] board = new TileType[15][15];
+    private BoardTreeManager manager = new BoardTreeManager();
     public LinkedList<Move> openMoves;
     TileType ourColor;
     TileType theirColor;
     LinkedList<Chain> chains;
-    int ourTotalHueristic = 0;
-    int theirTotalHueristic = 0;
+    int totalHeuristic = 0;
 
+    /**
+     * This will initialize the gameboard to all blank tiles.
+     */
     public GameBoard() {
         for(int i=0; i<15; i++) {
             for(int j=0; j<15; j++) {
@@ -25,24 +26,32 @@ public class GameBoard {
         chains = new LinkedList<>();
     }
 
+    /**
+     * This will take a gameboard and a new move and process it.
+     */
     public GameBoard(GameBoard previous, Move newMove) {
         board = previous.getBoard();
         openMoves = previous.openMoves;
         chains = previous.chains;
         ourColor = previous.ourColor;
         theirColor = previous.theirColor;
-	    
+
         respondToMove(newMove);
     }
 
-    public void setOpenMoves (LinkedList<Move> openMoves) {
-        this.openMoves = openMoves;
-    }
-
+    /**
+     * This will return the board.
+     * @return board The game board.
+     */
     public TileType[][] getBoard() {
         return this.board;
     }
 
+    /**
+     * This function will check that the move is valid and save it to the game board.
+     * @param m The move to be made.
+     * @return The boolean value if it saved or not.
+     */
     public boolean saveMove(Move m){
         if(m != null) {
             if (board[m.getColumn()][m.getRow()] == TileType.EMPTY) {
@@ -53,22 +62,35 @@ public class GameBoard {
         return false;
     }
 
+    /**
+     * This function will return the best move calculated by the Minimax Algorithm and Alpha Beta Pruning
+     * Each considerable move on this game board will be calculated and stored in the hashmap. The move
+     * with the highest value will be chosen.
+     * @return The best move.
+     */
     public Move getBestMove(){
-        int max = 0, i = 0, j = 0;
-        for (int k=0; k< board.length; k++){
-            for(int l=0; l<board[k].length; l++) {
-                int temp = calculateHeuristic(k, l);
-                if (temp > max) {
-                    max = temp;
-                    i = k;
-                    j = l;
-                }
-            }
+        HashMap<Integer, Move> moves = new HashMap<>();
+        int max = 0;
+        for (Move move : openMoves) {
+            int key = manager.minimax(this, 0,true);
+            moves.put(key, move);
+            max = max > key ? max : key;
         }
-
-        return new Move(i, j, true);
+        return moves.get(max);
     }
 
+    /**
+     * This function will calculate the heuristic value based on a number of characteristics.
+     * The most basic is the inverse Manhattan distance so that the game will start off reasonably towards the center.
+     * As the game gets more complex, the moves will be more and more based off of chains of related tiles.
+     * Each chain a tile is a part of will add to the heuristic value of that tile. Since the game board will never
+     * try to move on behalf of the other player, we add the other player's likely heuristic value to ours --
+     * --if our enemy wants to go there, so do we---- this play style allows our AI to play both offensively and
+     * defensively.
+     * @param i The row.
+     * @param j The column.
+     * @return The integer sum of the heuristic.
+     */
     public int calculateHeuristic(int i, int j) {
         int heuristic = 14 - abs(8-i) - abs(8-j);
 	    

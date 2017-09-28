@@ -1,11 +1,7 @@
 import java.io.File;
-import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.util.Scanner;
 
-/**
- * Created by Ryan on 9/20/2017.
- */
 public class FileManager {
     private File goFile;
     private File moveFile;

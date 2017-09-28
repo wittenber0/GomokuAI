@@ -1,18 +1,10 @@
-import java.util.LinkedList;
-
-/**
- * Created by Ryan on 9/20/2017.
- */
 public class Main {
 
     public static void main(String[] args){
         GameBoard.TileType myColor;
         GameBoard.TileType opponentColor;
-        LinkedList<Move> openMoves = new LinkedList<Move>();
-        LinkedList<Chain> chains = new LinkedList<Chain>();
 
         GameBoard board = new GameBoard();
-        board.setOpenMoves(openMoves);
         FileManager f = new FileManager("move_file", "gg_no_re.go");
 
         if(f.readMove() == null){
