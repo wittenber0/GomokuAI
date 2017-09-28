@@ -1,7 +1,6 @@
 import java.util.LinkedList;
 
 import static java.lang.Math.abs;
-import static java.lang.Math.min;
 
 /**
  * Created by Luke on 20-Sep-17.
@@ -13,6 +12,8 @@ public class GameBoard {
     TileType ourColor;
     TileType theirColor;
     LinkedList<Chain> chains;
+    int ourTotalHueristic = 0;
+    int theirTotalHueristic = 0;
 
     public GameBoard() {
         for(int i=0; i<15; i++) {
@@ -42,10 +43,10 @@ public class GameBoard {
         return this.board;
     }
 
-    public boolean saveMove(Move m, TileType color){
+    public boolean saveMove(Move m){
         if(m != null) {
             if (board[m.getColumn()][m.getRow()] == TileType.EMPTY) {
-                board[m.getColumn()][m.getRow()] = color;
+                board[m.getColumn()][m.getRow()] = m.isOurMove ? ourColor : theirColor;
                 return true;
             }
         }
@@ -68,149 +69,6 @@ public class GameBoard {
         return new Move(i, j, true);
     }
 
-    public boolean checkWin(Move m, TileType color){
-        if(countUp(m, color) + countDown(m, color) >= 4){
-            return true;
-        }
-
-        if(countLeft(m, color) + countRight(m, color) >= 4){
-            return true;
-        }
-
-        if(countUpLeft(m, color) + countDownRight(m, color) >= 4){
-            return true;
-        }
-
-        if(countDownLeft(m, color) + countUpRight(m, color) >= 4){
-            return true;
-        }
-
-
-        return false;
-    }
-
-    private int countLeft(Move m, TileType color){
-        int count= 0;
-
-        int i=1;
-        while(m.getColumn()-i>=0){
-            TileType  cellValue = board[m.getRow()][m.getColumn()-i];
-            if(cellValue != color){
-                return count;
-            }
-            i++;
-        }
-
-        return count;
-
-    }
-
-    private int countRight(Move m, TileType color){
-        int count= 0;
-
-        int i=1;
-        while(m.getColumn()+i<board[0].length){
-            TileType  cellValue = board[m.getRow()][m.getColumn()+i];
-            if(cellValue != color){
-                return count;
-            }
-            i++;
-        }
-
-        return count;
-    }
-
-    private int countUp(Move m, TileType color){
-        int count= 0;
-
-        int i=1;
-        while(m.getRow()-i>=0){
-            TileType  cellValue = board[m.getRow()-i][m.getColumn()];
-            if(cellValue != color){
-                return count;
-            }
-            i++;
-        }
-
-        return count;
-    }
-
-    private int countDown(Move m, TileType color){
-        int count= 0;
-
-        int i=1;
-        while(m.getRow()+i<board.length){
-            TileType  cellValue = board[m.getRow()+i][m.getColumn()];
-            if(cellValue != color){
-                return count;
-            }
-            i++;
-        }
-
-        return count;
-    }
-
-    private int countUpRight(Move m, TileType color){
-        int count= 0;
-
-        int i=1;
-        while(m.getRow()-i>=0 && m.getColumn() +i < board[0].length){
-            TileType  cellValue = board[m.getRow()-i][m.getColumn()+i];
-            if(cellValue != color){
-                return count;
-            }
-            i++;
-        }
-
-        return count;
-    }
-
-    private int countUpLeft(Move m, TileType color){
-        int count= 0;
-
-        int i=1;
-        while(m.getRow()-i>=0 && m.getColumn() -i >= 0){
-            TileType  cellValue = board[m.getRow()-i][m.getColumn()-i];
-            if(cellValue != color){
-                return count;
-            }
-            i++;
-        }
-
-        return count;
-    }
-
-    private int countDownLeft(Move m, TileType color){
-        int count= 0;
-
-        int i=1;
-        while(m.getRow()+i < board.length && m.getColumn() -i >= 0){
-            TileType  cellValue = board[m.getRow()+i][m.getColumn()-i];
-            if(cellValue != color){
-                return count;
-            }
-            i++;
-        }
-
-        return count;
-    }
-
-    private int countDownRight(Move m, TileType color){
-        int count= 0;
-
-        int i=1;
-        while(m.getRow()+i < board.length && m.getColumn() +i < board[0].length){
-            TileType  cellValue = board[m.getRow()+i][m.getColumn()+i];
-            if(cellValue != color){
-                return count;
-            }
-            i++;
-        }
-
-        return count;
-    }
-	
-
     public int calculateHeuristic(int i, int j) {
         int heuristic = 14 - abs(8-i) - abs(8-j);
 	    
@@ -218,7 +76,17 @@ public class GameBoard {
 
         return heuristic;
     }
-    
+
+    public Chain getLongestChain() {
+        Chain bigchain = chains.get(1);
+        for(Chain chain : chains) {
+            if(chain.getLength() > bigchain.getLength())
+                bigchain = chain;
+        }
+
+        return bigchain;
+    }
+
     public void respondToMove(Move newMove) {
 	    Move moveToAdd;
 	    Move newTerminal;

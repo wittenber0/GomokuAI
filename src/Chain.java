@@ -28,6 +28,10 @@ public class Chain {
         return length;
     }
 
+    public boolean isOurChain() {
+        return isOurChain;
+    }
+
     public void setLength(int length) {
         this.length = length;
     }
