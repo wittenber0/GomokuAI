@@ -21,6 +21,8 @@ public class Main {
             myColor = GameBoard.TileType.BLACK;
             oponentColor = GameBoard.TileType.WHITE;
         }
+        board.ourColor = myColor;
+        board.theirColor = oponentColor;
 
         boolean boardFull = false;
         boolean win = false;
@@ -36,6 +38,7 @@ public class Main {
 
             board.saveMove(lastMove, oponentColor);
             board.setLastEnemyMove(lastMove);
+
 
             Move myMove = board.getBestMove();
             boardFull = board.saveMove(myMove, myColor);
